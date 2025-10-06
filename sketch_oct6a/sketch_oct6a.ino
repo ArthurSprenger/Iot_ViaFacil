@@ -16,5 +16,9 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+implementar reconexão 
 
+se( WiFi,status() !=WL_CONNECTED){
+  //CONECTAR
+}
 }
