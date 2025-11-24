@@ -5,7 +5,7 @@
 const char* SSID = "FIESC_IOT_EDU";
 const char* PASS = "8120gv08";
 
-const char* BROKER = "7aecec580ecf4e5cbac2d52b35eb85b9.s1.eu.hivemq.cloud";
+const char* BROKER = "ef339175de264ab783f4bea1e2a1abe9.s1.eu.hivemq.cloud";
 const int PORT = 8883;
 
 const char* BROKER_USER = "felipe";
@@ -67,6 +67,7 @@ void conectaMQTT() {
     if (mqtt.connect(clientId.c_str(), BROKER_USER, BROKER_PASS)) {
       mqtt.subscribe(TOPICO_SUBSCRIBE);
     } else {
+      Serial.print(".");
       delay(2000);
     }
   }
@@ -100,10 +101,12 @@ void loop() {
   if (dist1 < 10) {
     mqtt.publish(TOPICO_PUBLISH_1, "objeto_proximo");
     mqtt.publish(TOPICO_ENVIO_S3, "objeto_proximo");
-  }
+    Serial.println("objeto_proximo");
+     }
   if(dist2 > 10) {
     mqtt.publish(TOPICO_PUBLISH_2, "objeto_longe");
     mqtt.publish(TOPICO_ENVIO_S3, "objeto_longe");
+    Serial.println("objeto_longe");
   }
   
   delay(1000);
